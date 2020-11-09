@@ -18,8 +18,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --config ./webpack.js",
-    "dev:server": "cross-env NODE_ENV=development webpack serve --config ./webpack.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.js"
+    "dev": "cross-env NODE_ENV=development webpack --config ./webpack.config.js",
+    "dev:server": "cross-env NODE_ENV=development webpack serve --config ./webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js"
   }
 }

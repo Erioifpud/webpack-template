@@ -9,11 +9,11 @@
 6. 如果是 Typescript 项目，则需要将 jsconfig.json 调整为 tsconfig.json，并且补全`types`字段。
 
 # tsconfig 模版
+compilerOptions.paths 参考现有的 jsconfig.json，合并处理。
 ```json
 {
   "include": ["src/**/*"],
   "compilerOptions": {
-    // alias 参考现有的 jsconfig.json，合并处理
     "module": "commonjs",
     "sourceMap": true,
     "target": "es5",
