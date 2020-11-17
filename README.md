@@ -7,6 +7,7 @@
 4. 根据以上设置调整 .babelrc 或 jsconfig.json。
 5. 如果项目用于开发 package，那么记得在 package.json 中补全`main`、`keywords`、`unpkg`、`jsdelivr`、`repository`等字段。
 6. 如果是 Typescript 项目，则需要将 jsconfig.json 调整为 tsconfig.json，并且补全`types`字段。
+7. 需要提交 git 的话，记得使用`git remote remove origin`删除原来的远程仓库。
 
 # tsconfig 模版
 compilerOptions.paths 参考现有的 jsconfig.json，合并处理。
