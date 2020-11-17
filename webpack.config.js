@@ -11,7 +11,7 @@ function resolve (dir) {
 const PACKAGE_NAME = 'Instance'
 const IS_PROD = process.env.NODE_ENV === 'production'
 const OUTPUT_DIR = IS_PROD ? resolve('dist') : resolve('dev')
-const DEVTOOL = IS_PROD ? '' : 'source-map'
+const DEVTOOL = IS_PROD ? false : 'source-map'
 const NODE_MODULES_PATH = resolve('node_modules')
 
 const config = new Config()
@@ -22,7 +22,7 @@ const config = new Config()
 config
   .mode(process.env.NODE_ENV)
   .entry('index')
-    .add(resolve('./src'))
+    .add(resolve('src'))
     .end()
   .output
     .path(OUTPUT_DIR)
