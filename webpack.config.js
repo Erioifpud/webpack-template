@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path')
 const webpack = require('webpack')
 const Config = require('webpack-chain')
@@ -7,6 +8,7 @@ function resolve (dir) {
   return path.join(__dirname, dir)
 }
 
+const PACKAGE_NAME = 'Instance'
 const IS_PROD = process.env.NODE_ENV === 'production'
 const OUTPUT_DIR = IS_PROD ? resolve('dist') : resolve('dev')
 const DEVTOOL = IS_PROD ? '' : 'source-map'
@@ -25,7 +27,7 @@ config
   .output
     .path(OUTPUT_DIR)
     .filename('[name].bundle.js')
-    .library('Instance')
+    .library(PACKAGE_NAME)
     .libraryTarget('umd')
     
 
@@ -110,14 +112,16 @@ config
 
 // HTML 模版（可自动生成）
 // 需要引入 html-webpack-plugin
-// config
-//   .plugin('html')
-//   .use(HtmlWebpackPlugin, [
-//     {
-//       template: path.join(__dirname, 'examples', 'index.html'),
-//       inject: true
-//     }
-//   ])
+// if (!IS_PROD) {
+//   config
+//     .plugin('html')
+//     .use(HtmlWebpackPlugin, [
+//       {
+//         template: path.join(__dirname, 'examples', 'index.html'),
+//         inject: true
+//       }
+//     ])
+// }
 
 // 热重载
 if (!IS_PROD) {
