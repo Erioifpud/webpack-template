@@ -75,6 +75,16 @@ config.module
     .use('typescript')
       .loader('ts-loader')
 
+// 处理静态资源
+// config.module
+//   .rule('static-file')
+//     .test(/\.(png|svg|jpg|gif)$/)
+//     .exclude
+//       .add(NODE_MODULES_PATH)
+//       .end()
+//     .use('file')
+//       .loader('file-loader')
+
 // 处理 CSS
 // config.module
 //   .rule('style-css')
