@@ -3,6 +3,10 @@ const path = require('path')
 const webpack = require('webpack')
 const Config = require('webpack-chain')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -86,21 +90,23 @@ config.module
 //       .loader('file-loader')
 
 // 处理 CSS
+// 需要额外安装 mini-css-extract-plugin，因为在生产环境下 style-loader 无法兼容 HMR
 // config.module
 //   .rule('style-css')
 //     .test(/\.css$/)
 //     .use('style-loader')
-//       .loader('style-loader')
+//       .loader(IS_PROD ? MiniCssExtractPlugin.loader : 'style-loader')
 //       .end()
 //     .use('css-loader')
 //       .loader('css-loader')
 
 // 处理 SCSS
+// 需要额外安装 mini-css-extract-plugin，因为在生产环境下 style-loader 无法兼容 HMR
 // config.module
 //   .rule('scss')
 //     .test(/\.scss$/)
 //     .use('style-loader')
-//       .loader('style-loader')
+//       .loader(IS_PROD ? MiniCssExtractPlugin.loader : 'style-loader')
 //       .end()
 //     .use('css-loader')
 //       .loader('css-loader')
@@ -149,19 +155,29 @@ config.devtool(DEVTOOL)
 // 需要修改默认 minimizer 时使用，比如保留代码中的注释
 // 需要安装 terser-webpack-plugin
 // ----------------------------------
-// config.optimization
-//   .minimizer('terser')
-//   .use(TerserPlugin, [
-//     {
-//       terserOptions: {
-//         compress: true,
-//         output: {
-//           comments: true
-//         }
-//       },
-//       extractComments: true
-//     }
-//   ])
+config.optimization
+  .minimizer('terser')
+  .use(TerserPlugin, [
+    {
+      terserOptions: {
+        compress: true,
+        output: {
+          comments: true
+        }
+      },
+      extractComments: true
+    }
+  ])
+
+// ----------------------------------
+// 生产环境下压缩 CSS
+// 需要安装 css-minimizer-webpack-plugin
+// ----------------------------------
+// if (IS_PROD) {
+//   config.optimization
+//     .minimizer('css-uglify')
+//     .use(CssMinimizerPlugin)
+// }
 
 // ----------------------------------
 // Nodejs 模式，打包结果不会涉及 window
