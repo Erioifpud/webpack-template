@@ -53,8 +53,6 @@ config.resolve
 
 // ----------------------------------
 // 配置 loader
-// Typescript 下需要安装 typescript 与 ts-loader，并且需要在 babelrc 中引入 @babel/preset-typescript
-// SCSS 需要安装 sass-loader 与 node-sass
 // ----------------------------------
 // 编译 Javscript
 config.module
@@ -67,6 +65,7 @@ config.module
       .loader('babel-loader')
 
 // 编译 Typescript
+// Typescript 下需要安装 typescript 与 ts-loader，并且需要在 babelrc 中引入 @babel/preset-typescript
 config.module
   .rule('compile-ts')
     .test(/\.ts$/)
@@ -102,6 +101,7 @@ config.module
 
 // 处理 SCSS
 // 需要额外安装 mini-css-extract-plugin，因为在生产环境下 style-loader 无法兼容 HMR
+// 需要额外安装 sass-loader 与 node-sass
 // config.module
 //   .rule('scss')
 //     .test(/\.scss$/)
